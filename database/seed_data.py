@@ -122,9 +122,9 @@ def seed_data():
 
     cursor.executemany("""
     INSERT INTO activities (
-        title, topic, learning_objectives, materials, min_time_minutes, max_time_minutes, difficulty, activity_type, tags, link
+        title, topic, learning_objectives, standards, materials, min_time_minutes, max_time_minutes, difficulty, activity_type, tags, link
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, activities)
 
     conn.commit()

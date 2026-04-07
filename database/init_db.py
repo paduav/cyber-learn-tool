@@ -20,6 +20,7 @@ def init_db():
         title TEXT NOT NULL,
         topic TEXT NOT NULL,
         learning_objectives TEXT,
+        standards TEXT,
         materials TEXT,
         min_time_minutes INTEGER NOT NULL,
         max_time_minutes INTEGER,
