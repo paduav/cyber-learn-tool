@@ -20,7 +20,7 @@ def seed_data():
             None,
             "Intermediate",
             "Online, Individual game",
-            "network, security, privacy, passwords, social engineering, lab, online, game, individual, intermediate",
+            "network, security, privacy, passwords, social engineering, lab, online, game, individual, independent,  intermediate",
             "https://thinktv.pbslearningmedia.org/resource/nvcy-sci-cyberlab/nova-cybersecurity-lab/nova-premium-collection/"
         ),
         (
@@ -33,7 +33,7 @@ def seed_data():
             45,
             "Beginner",
             "Online, Individual, Guided game",
-            "password, authentication, phishing, social engineering, beginner, online, game, individual",
+            "password, authentication, phishing, social engineering, beginner, online, game, individual, independent",
             "https://games.gamindo.com/videogames/google/1/?https://games.gamindo.com/videogames/google/"
         ),
         (
@@ -46,7 +46,7 @@ def seed_data():
             None,
             "Advanced",
             "Online, individual game",
-            "advanced, ai, artificial intelligence, prompt, injection, llm, vulnerability, online, game, individual",
+            "advanced, ai, artificial intelligence, prompt, injection, llm, vulnerability, online, game, individual, independent",
             "https://gandalf.lakera.ai/intro"
         ),
         (
@@ -59,7 +59,7 @@ def seed_data():
             None,
             "Advanced",
             "Online, Individual CTF challenge platform",
-            "advanced, cryptography, hack, python, ctf, capture the flag, online, individual",
+            "advanced, cryptography, hack, python, ctf, capture the flag, online, individual, independent",
             "https://cryptohack.org/"
         ),
         (
@@ -72,7 +72,7 @@ def seed_data():
             45,
             "Beginner",
             "Online, Individual game",
-            "beginner, safety, digital citizenship, privacy, phishing, social engineering, passwords, online, individual",
+            "beginner, safety, digital citizenship, privacy, phishing, social engineering, passwords, online, independent, individual",
             "https://beinternetawesome.withgoogle.com/en_us/interland/"
         ),
         (
@@ -124,7 +124,7 @@ def seed_data():
             None,
             "Beginner, Intermediate",
             "Collaborative discussion, Lesson plan",
-            "beginner, intermediate, facial recognition, digital citizenship, ai, artificial intelligence, privacy, slides, handout, collaborative, discussion",
+            "beginner, intermediate, facial recognition, digital citizenship, ai, artificial intelligence, privacy, slides, handout, collaborative, discussion, lesson",
             "https://www.commonsense.org/education/digital-citizenship/lesson/facing-off-with-facial-recognition"
         ),
         (
@@ -137,7 +137,7 @@ def seed_data():
             None,
             "Beginner, Intermediate",
             "Online, Individual game",
-            "beginner, intermediate, digital citizenship, phishing, social engineering, ransomware, vpn, game, online, individual",
+            "beginner, intermediate, digital citizenship, phishing, social engineering, ransomware, vpn, game, online, individual, independent",
             "https://training.knowbe4.com/modstore/view/4be6a93b-b380-4e5a-934a-27b12674d841"
         ),
         (
@@ -150,7 +150,7 @@ def seed_data():
             None,
             "Beginner, Intermediate",
             "Online, Individual game",
-            "beginner, intermediate, ai, safety, online, individual, game",
+            "beginner, intermediate, ai, safety, online, individual, independent, game",
             "https://training.knowbe4.com/modstore/view/faf8def0-1248-4f50-a171-634fa207f1ac"
         ),
         (
@@ -163,7 +163,7 @@ def seed_data():
             60,
             "Beginner, Intermediate",
             "Hands-on, Individual and group activity",
-            "beginner, intermediate, cryptography, encryption, decryption, cipher, messages, individual, group, activity, hands-on, physical",
+            "beginner, intermediate, cryptography, encryption, decryption, cipher, messages, individual, independent, group, activity, hands-on, physical, in-person, handout",
             "https://cyber.org/news/classroom-activity-building-cypher-disk"
         ),
         (
@@ -189,7 +189,7 @@ def seed_data():
             60,
             "Advanced",
             "Online, Individual, CTF challenge platform",
-            "advanced, online, individual, ctf, capture the flag, cryptography, network, security, encrypt, decode, password",
+            "advanced, online, individual, independent, ctf, capture the flag, cryptography, network, security, encrypt, decode, password",
             "https://316ctf.com/"
         ),
         (
@@ -202,7 +202,7 @@ def seed_data():
             60,
             "Beginner, Intermediate, Advanced",
             "Online, Individual game",
-            "advanced, beginner, intermediate, online, game, detective, malware, threats, incident response, sql, logs, individual",
+            "advanced, beginner, intermediate, online, game, detective, malware, threats, incident response, sql, logs, individual, independent",
             "https://kc7cyber.com/"
         ),
         (
@@ -215,7 +215,7 @@ def seed_data():
             None,
             "Beginner",
             "Hands-on, Physical, Group activity",
-            "beginner, group, threats, network, security, game, mitm, packets, dos, data",
+            "beginner, group, threats, network, security, game, mitm, packets, dos, data, in-person, physical, hands-on",
             "https://sites.google.com/view/nifty-assignments/home/2021/unplug-the-internet"
         ),
         (
@@ -228,7 +228,7 @@ def seed_data():
             None,
             "Intermediate",
             "Online, Individual game",
-            "intermediate, online, game, command line, operating system, os, cmd ,cli, individual, terminal",
+            "intermediate, online, game, command line, operating system, os, cmd ,cli, individual, independent, terminal",
             "https://cmdchallenge.com/"
         ),
         (
@@ -241,7 +241,7 @@ def seed_data():
             None,
             "Beginner, Intermediate",
             "Online, Individual game",
-            "intermediate, online, game, beginner, puzzle, malware, threats, social engineering, phishing, download, risk, individual",
+            "intermediate, online, game, beginner, puzzle, malware, threats, social engineering, phishing, download, risk, independent, individual",
             "https://cryptologicfoundation.org/resources/cyber-games/amanita-whitehat-2/"
         ),
         (
@@ -254,8 +254,359 @@ def seed_data():
             60,
             "Advanced",
             "Online, Individual, CTF platform",
-            "advanced, online, individual, ctf, capture the flag, os, operating system, command line, cmd, cli, linux, ssh, terminal",
+            "advanced, online, individual, independent, ctf, capture the flag, os, operating system, command line, cmd, cli, linux, ssh, terminal",
             "https://overthewire.org/wargames/"
+        ),
+        (
+            "TryCyber Challenges",
+            "Malware, Cyber Threats, Network Security",
+            "Students will be able to explore real-world cybersecurity tasks such as investigating cyber incidents, and identifying potential threats, develop problem-solving and analytical skills while learning how to respond to security events.",
+            "K-12 Cybersecurity Standards, NICE",
+            "Computer/laptop, Internet connection",
+            30,
+            45,
+            "Intermediate",
+            "Online, Individual, Scenario-based game",
+            "intermediate, online, individual, independent, scenario, game, malware, threats, network, security",
+            "https://trycyber.us/challenges/"
+        ),
+        (
+            "AI Problem Solvers Challenge",
+            "Artificial intelligence",
+            "Students will be able to recognize that AI is a tool that follows instructions humans create, practice designing prompts for an AI using the four-step process, collaborate with peers to solve concrete, relatable problems, reflect on ethical and responsible uses of AI, recognize how clarity, iteration, and ethical framing improve the usefulness of AI outputs.",
+            "ISTE, K-12 Cybersecurity Standards",
+            "Computer/laptop or tablet, Internet connection, whiteboard(optional)",
+            60,
+            None,
+            "Beginner, Intermediate",
+            "Online, Group activity",
+            "intermediate, beginner, online, group, ai, artificial intelligence,pairs, slides",
+            "https://drive.google.com/file/d/1Z5HMA82WlKhCcEUQxR_7c1XnElYXIgJG/view"
+        ),
+        (
+            "Mix & Move with AI",
+            "Artificial intelligence",
+            "Students will be able to explore three creative stages, using AI prompts to spark inspiration and coding concepts to customize their final project.",
+            "ISTE AI Standards",
+            "Computer/laptop, Internet connection",
+            60,
+            90,
+            "Beginner, Intermediate",
+            "Online, Individual game",
+            "intermediate, beginner, online, game, ai, artificial intelligence",
+            "https://studio.code.org/courses/mix-move-ai-2025/units/1/lessons/1/levels/1"
+        ),
+        (
+            "Cyber Videos + Morris Worm",
+            "Cryptography",
+            "Students will be able to explore concepts like layering, information hiding, encapsulation, modularity, domain separation, and process isolation.",
+            "K-12 Cybersecurity Standards, Computer Science Standards",
+            "Computer/laptop, Internet connection, Headphones",
+            30,
+            60,
+            "Beginner",
+            "Online, Individual videos, game",
+            "beginner, online, individual, independent, video, game, worm, cryptography, encapsulation, domain separation, process isolation, modularity",
+            "https://cybercamp.seas.gwu.edu/online-cybercamp-for-middle-school-girls/"
+        ),
+        (
+            "Information Security & The CIA Triad Lessons & Activities",
+            "Phishing, Social Engineering, Privacy, Personal Data Protection",
+            "Students will be able to explain confidentiality, integrity, and availability (CIA Triad) as the foundation of information security, explore how email phishing attacks, fake social media accounts, ransomware, and identity theft can violate the cybersecurity goals of confidentiality, integrity and availability, describe security controls that can be used to protect computing resources.",
+            "APCSP Standards",
+            "Slides, Activities, paper, pencils",
+            100,
+            150,
+            "Intermediate",
+            "In-person, Collaborative activity, Discussion",
+            "in-person, physical, collaborative, discussion, information, security, cia, confidentiality, integrity, availability, phishing, social engineering, privacy, data, protection, lesson, handout",
+            "https://clark.center/details/rmckernan/ba7c2e5a-dd09-404a-8cdc-9b2f6c205b48"
+        ),
+        (
+            "Personal Data Vulnerabilities Lessons & Activities",
+            "Personal Data Protection",
+            "Students will be able to explain what a vulnerability is and how they impact cybersecurity, identify elements of their personal data which may be vulnerable to attack, explain why keeping data safe is important both personally and for professional organizations.",
+            "APCSP Standards",
+            "Computer/laptop, Internet connection,  Activity paper, Documents",
+            60,
+            120,
+            "Intermediate",
+            "Online lesson, Activity",
+            "online, lesson, activity, data, vulnerabilities, safety",
+            "https://clark.center/details/rmckernan/1a83d86a-ff12-4812-b6b0-a038b2655201"
+        ),
+        (
+            "Identity, Authentication, Authorization Lessons & Activities",
+            "Passwords, Authentication",
+            "Students will be able to understand ways in which attackers gain unauthorized access to systems and data, understand ways to protect devices and data, distinguish between authentication and authorization, identify three types of Multifactor authentication (knowledge, possession, inheritance), and describe what defines a strong password.",
+            "APCSP Standards",
+            "Computer/laptop, Internet connection",
+            100,
+            150,
+            "Intermediate",
+            "In-person, Collaborative activity, Lesson",
+            "in-person, physical, lesson, activity, collaborative, identity, authentication, authorization, mfa, passwords",
+            "https://clark.center/details/rmckernan/10335dd7-1a0f-4f51-895b-8a3f4f181ef8"
+        ),
+        (
+            "Risk Lesson & Activities",
+            "Risk Identification and Management",
+            "Students will be able to summarize security and privacy risks from collecting and storing personal data on a computer system.",
+            "APCSP Standards",
+            "Scenario sheets and charts",
+            45,
+            60,
+            "Intermediate",
+            "In-person, Collaborative activity, Lesson, Discussion",
+            "in-person, physical, lesson, activity, collaborative, discussion, risk, identification, management, security, privacy, data, handout",
+            "https://clark.center/details/rmckernan/f55d44e2-14d1-4360-8c8f-7b8357e4386f"
+        ),
+        (
+            "Secure Networking Lesson & Activities",
+            "Network Architecture and Attacks",
+            "Students will be able to explain network attacks and analyze the ethical considerations and consequences dealt to attackers.",
+            "APCSP Standards",
+            "Scenario sheets and charts, Counters or 40 pieces of square cardboard cutouts for each student",
+            150,
+            None,
+            "Beginner, Intermediate",
+            "In-person, Collaborative activity, Lesson, Discussion",
+            "in-person, physical, lesson, activity, collaborative, discussion, network, architecture, attack",
+            "https://clark.center/details/rmckernan/eed866c2-1363-4cfd-9e68-fed79ada3096"
+        ),
+        (
+            "Don't Feed the Phish",
+            "Phishing, Social Engineering",
+            "Students will be able to compare and contrast identity theft with other kinds of theft and describe different ways that identity theft can occur online.",
+            "Common Core ELA, ISTE, CASEL and AASL",
+            "Colored markers or highlighters, Pencils, Paper, Lesson handouts",
+            45,
+            None,
+            "Beginner",
+            "In-person, Hands-on, Paired activity",
+            "in-person, hands-on, physical, pair, collaborative, activity, phishing, lesson, handout",
+            "https://www.commonsense.org/education/digital-citizenship/lesson/dont-feed-the-phish"
+        ),
+        (
+            "Password Security Activity and Posters",
+            "Strong password structure and creation",
+            "Students will engage in creative and critical thinking to explore the concepts behind what makes a strong password.",
+            "CSTA K-12 Computer Science Standards, ISTE Standards for Students, Common Core ELA",
+            "Lesson poster, Paper, Pencil",
+            15,
+            None,
+            "Beginner",
+            "In-person, Hands-on, Activity, Discussion",
+            "in-person, hands-on, physical, collaborative, activity, lesson, password, security, poster, creation, structure",
+            "https://stopthinkconnect.org/campaigns/cybersmart-classroom-activities-posters"
+        ),
+        (
+            "Safe Online Surfing by the FBI",
+            "Online safety, Personal information protection",
+            "Students will be able to identify and explain the most common dangers of the internet and what to look out for. (Phishing emails, dangers of cookies, etc.)",
+            "ISTE Standards for Students",
+            "Computer/Laptop, internet connection",
+            15,
+            20,
+            "Beginner, Intermediate",
+            "Online, Individual game",
+            "beginner, intermediate, online, individual, independent, game, safety, surfing, fbi, information, protection",
+            "https://sos.fbi.gov/en/"
+        ),
+        (
+            "Cyber Land",
+            "Firewalls, Computer Configuration, Cyber careers, Online Safety, Cyber Ethics and Law, Digital Forensics, Malware, Computer Networks, Secure Coding, Public Wi-fi, Phishing, Cipher and Codes, IoT",
+            "Students will learn a variety of cybersecurity concepts including how firewalls operate, packet filtering, password strength, substitution ciphers and encryption, phishing identification, malware types, network topologies.",
+            "UK National Curriculum / GCSE Computer Science, Cyber Choices / NCA Framework",
+            "Computer/Laptop, internet connection",
+            10,
+            60,
+            "Beginner, Intermediate, Advanced",
+            "Online, Individual game",
+            "beginner, intermediate, advanced, online, individual, independent, game, firewall, configuration, safety, ethics, digital forensics, malware, network, coding, code, wifi, wi-fi, phishing, cipher, iot, internet of things",
+            "https://cybergamesuk.com/cyber-city"
+        ),
+        (
+            "CyberSafe: Home Sweet Hmm",
+            "Digital Literacy, Digital Citizenship, Online Safety.",
+            "Students will be able to: Understand the importance and benefits of the Internet in our everyday lives. Identify and avoid common cybersecurity risks by remembering, “STOP and THINK before you CLICK.” Build awareness to ensure the privacy of personal information. Advocate for help from trusted adults if you are unsure or uncomfortable. Build awareness among families about their role in making the internet safer.",
+            "K-12 Cybersecurity Standards, Computer Science Standards",
+            "Computer/Laptop, internet connection, Minecraft Education Downloaded: by visiting aka.ms/download",
+            60,
+            None,
+            "Beginner, Intermediate",
+            "Online, Individual game",
+            "beginner, intermediate, online, individual, independent, game, digital literacy, digital citizenship, safety, minecraft, awareness",
+            "https://education.minecraft.net/en-us/lessons/cybersafe-home-sweet-hmm"
+        ),
+        (
+            "CloudCraft",
+            "Digital Identity, Digital Literacy, Digital Communication, Digital Security, Digital Safety, Digital Society",
+            "Students will be able to:Understand how the data center helps society to manage online identities with integrity, and know how the data center works to protect people’s digital rights with respect. Understand how digital media is managed through the data center. Understand how the data center connects to society. Explain how the data center defends digital identity. Know how the data center works to help detect and manage digital dangers. Understand the opportunities and impact the data center has on society and the environment.",
+            "K-12 Cybersecurity Standards, Computer Science Standards",
+            "Computer/Laptop, internet connection, Minecraft Education Downloaded: by visiting aka.ms/download",
+            60,
+            None,
+            "Beginner, Intermediate",
+            "Online, Individual game",
+            "beginner, intermediate, online, individual, independent, game, minecraft, digital, identity, digital literacy, communication, security, safety, digital society",
+            "https://education.minecraft.net/en-us/lessons/cloudcraft"
+        ),
+        (
+            "CyberSafe: Privacy Prodigy",
+            "Digital Literacy, Digital Citizenship, Online Safety",
+            "Students will be able to: Keep login information private, Discuss real-world cybersecurity problems and how personal information can be protected. Explain how physical and digital security measures protect electronic information. Consider ways of managing the use of social media to maintain privacy needs. Discuss digital citizenship rules and behaviors for participating in an online environment. Apply safe practices while participating in online environments. Use technology safely, respectfully, and responsibly; recognize acceptable/unacceptable behavior; identify a range of ways to report concerns about content and contact.",
+            "K-12 Cybersecurity Standards, Computer Science Standards",
+            "Computer/Laptop, internet connection, Minecraft Education Downloaded: by visiting aka.ms/download",
+            60,
+            None,
+            "Beginner, Intermediate",
+            "Online, Individual game",
+            "beginner, intermediate, online, individual, independent, game, minecraft, privacy, digital literacy, digital citizenship, safety, protection, responsibility",
+            "https://education.minecraft.net/en-us/lessons/privacy-prodigy"
+        ),
+        (
+            "Cyber Threat Defender",
+            "Network Infrastructure, Attack and Defense Strategies",
+            "Students will be able to: Identify common cyber threats and attack techniques used by adversaries. Analyze network and system data to detect potential security incidents. Apply defensive strategies to mitigate and respond to cyber threats. Develop critical thinking and decision-making skills in simulated cybersecurity scenarios",
+            "ISTE, K-12 Cybersecurity Standards",
+            "CTD: Digital can be downloaded to PC and Mac computers. Using the CIAS Launcher (which also contains other games related to cryptocurrency): https://cias.utsa.edu/ctd/play-online/",
+            60,
+            150,
+            "Intermediate, Advanced",
+            "Online and individual, or physical using cards and with a group",
+            "intermediate, advanced, network infrastructure, attack, defense, strategy, online, individual, independent, physical, in-person, cards, collaborative, group, activity",
+            "https://cias.utsa.edu/ctd/#elementor-toc__heading-anchor-2"
+        ),
+        (
+            "AI for Oceans",
+            "Artificial Intelligence, Machine Learning, Data Classification",
+            "Students will be able to explain how AI systems learn from data, identify how classification models are trained and improved, recognize bias and errors in AI systems.",
+            "ISTE AI Standards, CSTA, K-12 Cybersecurity Standards",
+            "Computer/laptop or tablet, Internet connection",
+            60,
+            None,
+            "Beginner ,Intermediate",
+            "Online, Individual activity",
+            "beginner, individual, independent, activity, ai, artificial intelligence, machine learning, data classification",
+            "https://curriculum.code.org/pwc/ayp/8/"
+        ),
+        (
+            "Enter the Spudnet",
+            "Network Security, Internet Infrastructure, Cyber Threats",
+            "Students will be able to understand how data travels across networks, identify basic network components and vulnerabilities, apply strategic thinking to defend against cyber attacks.",
+            "K-12 Cybersecurity Standards, CSTA",
+            "Board game set (cards, tokens, game board), Group play space",
+            60,
+            90,
+            "Beginner, Intermediate",
+            "Hands-on, In-person, Group board game",
+            "beginner, intermediate, hands-on, in-person, group, collaborative, game, network security, infrastructure, threats",
+            "https://potatopirates.game/products/enter-the-spudnet-family-board-games"
+        ),
+        (
+            "Understanding Password Reuse, Variations & Multi-Factor Authentication Risks",
+            "Passwords, Authentication",
+            "Students will be able to explain credential stuffing and the risks of password reuse/variation, describe MFA and its protections as well as key vulnerabilities (adversary-in-the-middle, push fatigue, session theft, fallback methods), assess and improve personal password and authentication practices, reflect on personal risk and share experiences with peers.",
+            "CSTA K-12 Computer Science Standards (3A-CS-02, 3B-CS-03), NICE SP & PR: K0001, K0002, K0003, ISTE Standards",
+            "Computer/device for teacher to present questions, The Guardian article, MFA bypass risks article, and Forbes “How Hackers Bypass MFA” Article",
+            60,
+            None,
+            "Intermediate",
+            "Group reading and discussion activity",
+            "intermediate, group, in-person, collaborative, physical, reading, discussion, activity, password, mfa, risk",
+            "https://annmichaelsen.com/2025/09/17/lesson-plan-understanding-password-reuse-variations-multi-factor-authentication-risks/"
+        ),
+        (
+            "Protecting Data Lesson Plan",
+            "Authentication, Privacy, Personal Data Protection",
+            "Students will be able to understand discuss the benefits of computer virus scanning software and the need for regular updates, explain the benefits of multifactor authentication, thoughtfully answer a stimulus question",
+            "CSP Conceptual Framework: IOC 2, CSTA K-12: NI",
+            "Slides, Reading handout",
+            45,
+            None,
+            "Intermediate",
+            "Group discussion, Activity",
+            "intermediate, group, discussion, activity, in-person, collaborative, reading, handout, data protection, mfa, virus",
+            "https://studio.code.org/courses/csp-2021/units/10/lessons/10"
+        ),
+        (
+            "Privacy & Security Lessons",
+            "Authentication, Personal Data Protection",
+            "Students will learn how to use multi-factor authentication to protect an account, ways to password-protect data so it does not become compromised, how to identify phishing and malware threats, what data that existing systems and student solutions collect contributes to a digital footprint, how to manage their personal data and reduce their digital footprint, to assess if the data collected via websites and apps is essential to their purpose.",
+            "K-12 Cybersecurity Standards",
+            "Computer/device, Internet connection, resources list can be found in the link",
+            45,
+            60,
+            "Intermediate, Advanced",
+            "Group discussion, Activity",
+            "intermediate, advanced, group, discussion, activity, in-person, collaborative, privacy, security, lesson, mfa, phishing, malware, digital footprint, authentication",
+            "https://curriculumstagingbos.azurewebsites.net/media/7494/years_7-8_classroom_ideas-privacy_and_security.pdf"
+        ),
+        (
+            "Operating Systems & Security Settings",
+            "Operating Systems",
+            "Students will explore how operating systems provide security and learn how to locate, evaluate, and adjust key security settings on their devices.",
+            "K-12 Cybersecurity Standards",
+            "Computer/device, Internet connection, Handout",
+            45,
+            60,
+            "Intermediate, Advanced",
+            "Group discussion, Activity",
+            "intermediate, advanced, group, discussion, activity, in-person, collaborative, operating system, os, key, security",
+            "https://www.cs.purdue.edu/outreach/docs/indiana-4565-pdfs/unit2/day7lessonplan_operatingsystemsandsecuritysettings.pdf"
+        ),
+        (
+            "Cybersecurity & Digital Safety Lesson Plan",
+            "Password, Personal Data Protection, Social Engineering, Malware, Online Safety",
+            "Students will digital safety and explore topics such as Password, Personal Data Protection, Social Engineering, Malware, Online Safety ",
+            "K-12 Cybersecurity Standards",
+            "Slides, Discussion questions",
+            50,
+            60,
+            "Beginner",
+            "Group discussion",
+            "beginner, group, in-person, collaboration, discussion, slides, digital safety, safety, data protection, social engineering",
+            "https://cyberama.org/gallery/Lesson%20Plan%20for%20Teachers.pdf"
+        ),
+        (
+            "Viruses & Malware 101 Lesson Plan",
+            "Malware, Cyber Threats",
+            "Students will learn how to identify signs a computer may be infected with malicious software, be able to protect their computer using antivirus and antispyware software, understand what viruses, spyware, and Trojans are, know how to avoid inadvertently downloading malicious software, know how to use Antivirus software",
+            "CSTA K-12 Cybersecurity Standards (2-CS-03 / 3A-CS-02). ISTE Standards, Cyber.org Standards",
+            "AVAST, Video",
+            90,
+            None,
+            "Intermediate, Advanced",
+            "Individual activity",
+            "intermediate, advanced, individual, independent, activity, video, virus, malware, lesson, antivirus, antispyware, trojan",
+            "https://www.denverlibrary.org/sites/dplorg/files/Viruses%20and%20Malware%20101%20Lesson%20Plan%2012-1-13.docx"
+        ),
+        (
+            "Cyber Threats & Protection: Cybersecurity Escape Room Activity",
+            "Malware, Phishing",
+            "Students will identify common cyber threats and explain strategies for protecting their devices, accounts, and personal data.",
+            "CSTA K-12 Standards, ISTE, NICE",
+            "Computer/laptop, Internet connection, Escape room form link, Handout",
+            60,
+            90,
+            "Intermediate",
+            "Lesson, Individual activity",
+            "intermediate, lesson, individual, independent, in-person, physical, malware, phishing, activity, handout",
+            "https://www.cs.purdue.edu/outreach/docs/indiana-4565-pdfs/unit2/day3lessonplan_cyberthreatsandprotection.pdf"
+        ),
+        (
+            "Cybersecurity - Digital Forensics Games",
+            "Digital Forensics, Malware, Privacy, Personal Data Protection",
+            "Students will be able to explain the purpose of digital forensics and its role in investigating cybercrime, identify and describe the steps involved in a digital forensics investigation (collection, analysis, preservation), analyze digital evidence to determine how a cyber incident occurred, evaluate system vulnerabilities and propose ways to prevent future cyberattacks",
+            "CSTA K-12 Standards",
+            "Computer/laptop, Internet connection",
+            30,
+            None,
+            "Beginner, Intermediate",
+            "Online, Individual game",
+            "beginner, intermediate, online, game, individual, independent, digital forensics, malware, privacy, data protection, investigation, prevention",
+            "https://www.legendsoflearning.com/learning-objectives/cybersecurity-digital-forensics/"
         )
     ]
 
@@ -269,7 +620,7 @@ def seed_data():
     conn.commit()
     conn.close()
 
-    print("\nSample data inserted!\n")
+    print("\n Activity data inserted!\n")
 
 if __name__ == "__main__":
     seed_data()
