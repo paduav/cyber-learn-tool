@@ -68,4 +68,5 @@ def get_ranked_activities(topic, difficulty, time, standards):
 
     activities.sort(key=lambda x: x["score"], reverse=True)
 
-    return activities[:3]
+    # return all activities ranked. To return top (3) activities, append [:3]
+    return activities 

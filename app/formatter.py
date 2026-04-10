@@ -13,11 +13,11 @@ def prepare_activities_for_ai(topic, difficulty, time, standards):
 
 
 def format_for_ai(activities):
-    formatted = "Here are some activities:\n\n"
+    formatted = "Here are some cybersecurity lessons ranked by relevance:\n\n"
 
     for i, a in enumerate(activities, 1):
         formatted += (
-            f"Activity {i}:\n"
+            f"Activity {i} (Relevance Score: {a['score']}):\n"
             f"Title: {a['title']}\n"
             f"Topic: {a['topic']}\n"
             f"Learning Objectives: {a['learning_objectives']}\n"
