@@ -11,8 +11,12 @@
     --header: #34463a;
     --accent: #405645;
     --accent-soft: #d9e8dc;
-    --grade-bg: #d6f1fb;
-    --grade-text: #245267;
+    --difficulty-beginner-bg: #d8f3dc;
+    --difficulty-beginner-text: #1f6b3d;
+    --difficulty-intermediate-bg: #fff3bf;
+    --difficulty-intermediate-text: #8a6700;
+    --difficulty-advanced-bg: #ffd6d6;
+    --difficulty-advanced-text: #a61e1e;
     --topic-bg: #d9dde1;
     --topic-text: #434954;
     --duration-bg: #eadffc;
@@ -277,9 +281,19 @@ a {
     text-transform: uppercase;
 }
 
-.lesson-tag.grade {
-    background: var(--grade-bg);
-    color: var(--grade-text);
+.lesson-tag.difficulty.beginner {
+    background: var(--difficulty-beginner-bg);
+    color: var(--difficulty-beginner-text);
+}
+
+.lesson-tag.difficulty.intermediate {
+    background: var(--difficulty-intermediate-bg);
+    color: var(--difficulty-intermediate-text);
+}
+
+.lesson-tag.difficulty.advanced {
+    background: var(--difficulty-advanced-bg);
+    color: var(--difficulty-advanced-text);
 }
 
 .lesson-tag.topic {

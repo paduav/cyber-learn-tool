@@ -1,10 +1,10 @@
 /* Recommended JSON response
 {
-  "lessonPlan": {
+    "lessonPlan": {
     "title": "Understanding Phishing",
     "summary": "A classroom-ready lesson...",
     "tags": [
-      { "label": "Grade 7", "type": "grade" },
+      { "label": "Beginner", "type": "difficulty" },
       { "label": "Phishing", "type": "topic" },
       { "label": "45 min", "type": "duration" }
     ],
@@ -74,7 +74,7 @@ function initializeGeneratorForm() {
     // Stores references to all the input elements.
     const fields = {
         topic: form.querySelector("#topic"),
-        grade: form.querySelector("#grade"),
+        difficulty: form.querySelector("#difficulty"),
         durationValue: form.querySelector("#duration-value"),
         durationUnit: form.querySelector("#duration-unit"),
         standards: form.querySelector("#standards"),
@@ -191,7 +191,7 @@ function buildLessonRequestPayload(fields) {
 
     return {
         topic: fields.topic.value.trim(),
-        gradeLevel: fields.grade.value.trim(),
+        difficultyLevel: fields.difficulty.value.trim().toLowerCase(),
         duration: {
             value: Number.isNaN(durationValue) ? null : durationValue,
             unit: durationUnit,
@@ -211,8 +211,8 @@ function validateLessonRequest(payload) {
         errors.topic = "Please enter a learning topic or skill area.";
     }
 
-    if (!payload.gradeLevel) {
-        errors.grade = "Please select a grade level.";
+    if (!payload.difficultyLevel) {
+        errors.difficulty = "Please select a difficulty level.";
     }
 
     if (!payload.duration.value || payload.duration.value < 1) {
@@ -229,7 +229,7 @@ function validateLessonRequest(payload) {
 // Takes the lesson plan data and makes sure it has all the pieces the page expects.
 function normalizeLessonPlan(lessonPlan, requestPayload = {}) {
     const requestTopic = requestPayload?.topic || "Cybersecurity Awareness";
-    const requestGrade = requestPayload?.gradeLevel || "Middle School";
+    const requestDifficulty = requestPayload?.difficultyLevel || "beginner";
     const requestDuration = requestPayload?.duration?.display || "45 min";
 
     const title = lessonPlan?.title || `Understanding ${requestTopic}`;
@@ -240,7 +240,7 @@ function normalizeLessonPlan(lessonPlan, requestPayload = {}) {
     return {
         title,
         summary,
-        tags: buildLessonTags(lessonPlan?.tags, requestGrade, requestTopic, requestDuration),
+        tags: buildLessonTags(lessonPlan?.tags, requestDifficulty, requestTopic, requestDuration),
         learningObjectives: normalizeStringList(
             lessonPlan?.learningObjectives,
             [
@@ -281,18 +281,15 @@ function normalizeLessonPlan(lessonPlan, requestPayload = {}) {
     };
 }
 
-function buildLessonTags(tags, gradeLevel, topic, durationDisplay) {
+function buildLessonTags(tags, difficultyLevel, topic, durationDisplay) {
     const normalized = Array.isArray(tags) ? tags.filter(Boolean) : [];
 
     if (normalized.length > 0) {
-        return normalized.map((tag, index) => ({
-            label: typeof tag === "string" ? tag : tag.label,
-            type: typeof tag === "object" && tag.type ? tag.type : inferTagType(index),
-        }));
+        return normalized.map((tag, index) => normalizeLessonTag(tag, index));
     }
 
     return [
-        { label: gradeLevel, type: "grade" },
+        { label: toTitleCase(difficultyLevel), type: "difficulty" },
         { label: topic, type: "topic" },
         { label: durationDisplay, type: "duration" },
     ];
@@ -432,7 +429,15 @@ function renderTagList(selector, tags) {
     }
 
     container.innerHTML = tags
-        .map((tag) => `<span class="lesson-tag ${escapeHtml(tag.type)}">${escapeHtml(tag.label)}</span>`)
+        .map((tag) => {
+            const tagClasses = ["lesson-tag", escapeHtml(tag.type)];
+
+            if (tag.type === "difficulty") {
+                tagClasses.push(escapeHtml(getDifficultyModifier(tag.label)));
+            }
+
+            return `<span class="${tagClasses.join(" ")}">${escapeHtml(tag.label)}</span>`;
+        })
         .join("");
 }
 
@@ -512,7 +517,7 @@ function renderMaterials(selector, items) {
 // Clears any old error states, then shows new ones.
 function renderValidationErrors(errors, fields) {
     clearFieldError(fields.topic);
-    clearFieldError(fields.grade);
+    clearFieldError(fields.difficulty);
     clearFieldError(fields.durationValue);
     clearFieldError(fields.durationUnit);
 
@@ -520,8 +525,8 @@ function renderValidationErrors(errors, fields) {
         setFieldError(fields.topic, "#topic-error", errors.topic);
     }
 
-    if (errors.grade) {
-        setFieldError(fields.grade, "#grade-error", errors.grade);
+    if (errors.difficulty) {
+        setFieldError(fields.difficulty, "#difficulty-error", errors.difficulty);
     }
 
     if (errors.durationValue || errors.durationUnit) {
@@ -641,7 +646,7 @@ function sumActivityTimes(activities) {
 
 function inferTagType(index) {
     if (index === 0) {
-        return "grade";
+        return "difficulty";
     }
 
     if (index === 1) {
