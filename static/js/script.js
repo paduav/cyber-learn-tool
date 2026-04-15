@@ -113,8 +113,6 @@ function initializeGeneratorForm() {
             BACKEND: send form data to Flask and wait for Flask to send back the lesson plan.
         */
         try {
-            const responseBody = await requestLessonPlan(payload);
-            // Creates a lesson plan object based on the user's inputs.
             const lessonPlan = await requestLessonPlan(payload);
             // Saves the lesson plan in browser storage, then sends the browser to the preview page.
             sessionStorage.setItem(LESSON_PLAN_STORAGE_KEY, JSON.stringify(lessonPlan));
@@ -182,6 +180,7 @@ function initializeLessonPlanPage() {
 
     // Gets a lesson plan object, ensures correct structure, and displays it on the page.
     const renderedLessonPlan = normalizeLessonPlan(storedLessonPlan, storedRequest);
+    renderLessonPlan(renderedLessonPlan);
 }
 
 // Reads the form values and builds a request object.
@@ -293,6 +292,30 @@ function buildLessonTags(tags, difficultyLevel, topic, durationDisplay) {
         { label: topic, type: "topic" },
         { label: durationDisplay, type: "duration" },
     ];
+}
+
+function normalizeLessonTag(tag, index) {
+    if (typeof tag === "string") {
+        return {
+            label: tag,
+            type: inferTagType(index)
+        };
+    }
+
+    return {
+        label: tag.label || "",
+        type: tag.type || inferTagType(index)
+    };
+}
+
+function getDifficultyModifier(label) {
+    const value = String(label).toLowerCase();
+
+    if (value.includes("beginner")) return "beginner";
+    if (value.includes("intermediate")) return "intermediate";
+    if (value.includes("advanced")) return "advanced";
+
+    return "";
 }
 
 function normalizeStandards(standards, standardsFallback) {
@@ -663,4 +686,20 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#39;");
+}
+
+async function requestLessonPlan(payload) {
+    const response = await fetch("/generate-lesson-plan", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to generate lesson plan");
+    }
+
+    return await response.json();
 }

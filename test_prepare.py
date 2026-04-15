@@ -1,7 +1,7 @@
 from db_app.formatter import prepare_activities_for_ai
 
 topic = "phishing"
-grade = "middle"
+grade = "beginner"
 time = 60
 standards = "CSTA K12 (3A-CS-02)"
 
