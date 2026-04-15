@@ -13,11 +13,12 @@ def get_ranked_activities(topic, difficulty, time, standards):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # filter relevant ectivities
+    # filter relevant activities
+    #WHERE topic = ? OR tags LIKE ?
+    #, (topic, f"%{topic}%")
     cursor.execute("""
         SELECT * FROM activities
-        WHERE topic = ? OR tags LIKE ?
-        """, (topic, f"%{topic}%"))
+        """)
     rows = cursor.fetchall()
     conn.close()
 
@@ -50,8 +51,12 @@ def get_ranked_activities(topic, difficulty, time, standards):
             score += 2
 
         # time match
-        if activity["min_time_minutes"] <= time <= activity["max_time_minutes"]:
-            score += 2
+        min_time = activity["min_time_minutes"]
+        max_time = activity["max_time_minutes"]
+
+        if min_time is not None and max_time is not None:
+            if min_time <= time <= max_time:
+                score += 2
 
         # standards match
         if standards and activity["standards"]:
@@ -69,4 +74,4 @@ def get_ranked_activities(topic, difficulty, time, standards):
     activities.sort(key=lambda x: x["score"], reverse=True)
 
     # return all activities ranked. To return top (3) activities, append [:3]
-    return activities 
+    return activities[:46]
