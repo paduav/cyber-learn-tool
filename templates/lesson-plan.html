@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated Lesson Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="header-inner">
+                <a class="brand-lockup" href="{{ url_for('index') }}" aria-label="LessonForge home">
+                    <span class="brand-badge">N/A</span>
+                    <div class="brand-copy">
+                        <span class="brand-mark">TitleHere</span>
+                        <span class="brand-subtitle">Cybersecurity AI Lesson Planning Tool</span>
+                    </div>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a class="nav-link" href="{{ url_for('index') }}">Generator</a>
+                    <a class="nav-link active" href="{{ url_for('lesson_plan_page') }}">Preview</a>
+                    <a class="nav-link" href="{{ url_for('index') }}#about">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="lesson-container">
+            <article class="lesson-card">
+                <p class="page-message" id="lesson-page-message" aria-live="polite"></p>
+
+                <section class="lesson-hero">
+                    <div class="lesson-hero-copy">
+                        <span class="eyebrow">Generated Lesson Plan</span>
+                        <h1 class="lesson-title" id="lesson-title">Lesson Plan Title</h1>
+                        <p class="lesson-summary" id="lesson-summary">
+                            This will display a short overview of the lesson here. This summary can describe the focus of the lesson, the intended student outcome, and the general structure of the activities and discussion.
+                        </p>
+                    </div>
+
+                    <div class="lesson-hero-meta">
+                        <div class="lesson-tags" id="lesson-tags" aria-label="Lesson metadata">
+                            <span class="lesson-tag difficulty beginner">Beginner</span>
+                            <span class="lesson-tag topic">Topic</span>
+                            <span class="lesson-tag duration">60 min</span>
+                        </div>
+
+                        <div class="hero-actions">
+                            <a class="btn secondary-btn" href="{{ url_for('index') }}">Edit inputs</a>
+                            <button class="btn pdf-btn" id="save-pdf-button" type="button">Save as PDF</button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="lesson-grid">
+                    <div class="lesson-main">
+                        <section class="lesson-section">
+                            <div class="section-heading">
+                                <h2>Learning Objectives</h2>
+                            </div>
+                            <ul id="learning-objectives">
+                                <li>Learning objective 1 goes here with a short descriptive sentence.</li>
+                                <li>Learning objective 2 goes here with a short descriptive sentence.</li>
+                                <li>Learning objective 3 goes here with a short descriptive sentence.</li>
+                                <li>Learning objective 4 goes here with a short descriptive sentence.</li>
+                        </section>
+
+                        <section class="lesson-section">
+                            <div class="section-heading">
+                                <h2>Introduction</h2>
+                                <span class="time-pill" id="introduction-time">10 min</span>
+                            </div>
+                            <p id="introduction-copy">
+                                The opening activity or classroom hook will be here. This section can introduce the lesson topic, connect to students’ prior knowledge, and set up the main question or focus for the lesson.
+                            </p>
+                            <ul id="introduction-bullets">
+                                 <li>An introductory discussion prompt can be here.</li>
+                                <li>An opening step, teacher move, or guiding question can be here.</li>
+                            </ul>
+                        </section>
+
+                        <section class="lesson-section">
+                            <div class="section-heading">
+                                <h2>Activities</h2>
+                                <span class="time-pill" id="activities-time">25 min</span>
+                            </div>
+
+                            <div class="activities-list" id="activities-list">
+                                <article class="activity-card">
+                                    <div class="activity-topline">
+                                        <h3 class="activity-title">Activity Title 1</h3>
+                                        <span class="activity-time">10 min</span>
+                                    </div>
+                                    <p>
+                                        A short description of the first activity will appear here. This can explain what students will do, how the activity is structured, and what skill or concept it supports.
+                                    </p>
+                                    <ul>
+                                        <li>A teacher note, student task, or activity detail here.</li>
+                                        <li>Another supporting detail, direction, or expected outcome here.</li>
+                                    </ul>
+                                </article>
+
+                                <article class="activity-card">
+                                    <div class="activity-topline">
+                                        <h3 class="activity-title">Activity Title 2</h3>
+                                        <span class="activity-time">15 min</span>
+                                    </div>
+                                    <p>
+                                        A short description of the second activity will appear here. This can explain what students will do, how the activity is structured, and what skill or concept it supports.
+                                    </p>
+                                    <ul>
+                                        <li>A teacher note, student task, or activity detail here.</li>
+                                        <li>Another supporting detail, direction, or expected outcome here.</li>
+                                    </ul>
+                                </article>
+
+                                <article class="activity-card">
+                                    <div class="activity-topline">
+                                        <h3 class="activity-title">Activity Title 3</h3>
+                                        <span class="activity-time">20 min</span>
+                                    </div>
+                                    <p>
+                                        A short description of the third activity will appear here. This can explain what students will do, how the activity is structured, and what skill or concept it supports.
+                                    </p>
+                                    <ul>
+                                        <li>A teacher note, student task, or activity detail here.</li>
+                                        <li>Another supporting detail, direction, or expected outcome here.</li>
+                                    </ul>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="lesson-section">
+                            <div class="section-heading">
+                                <h2>Discussion / Reflection</h2>
+                                <span class="time-pill" id="discussion-time">10 min</span>
+                            </div>
+                            <ul id="discussion-points">
+                                <li>Add reflection question 1 here.</li>
+                                <li>Add reflection question 2 here.</li>
+                                <li>Add reflection question 3 here.</li>
+                            </ul>
+                        </section>
+
+                        <section class="lesson-section">
+                            <div class="section-heading">
+                                <h2>Wrap-Up</h2>
+                                <span class="time-pill" id="wrap-up-time">5 min</span>
+                            </div>
+                            <p id="wrap-up-copy">
+                                The closing summary will appear here. This section can restate the key takeaway, reinforce the lesson objective, and guide students toward one final reflection or action step.
+                            </p>
+                            <div class="lesson-note" id="wrap-up-note">
+                                Can include an exit ticket or closing note here. Can be a short prompt, reflection task, or final check for understanding.
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside class="lesson-sidebar">
+                        <section class="lesson-section sidebar-panel">
+                            <div class="section-heading">
+                                <h2>Standards Alignment</h2>
+                            </div>
+                            <div class="standards-list" id="standards-list">
+                                <div class="standards-item">
+                                    <span class="item-label">Framework</span>
+                                    Standard or alignment reference goes here with a short description of how it connects to the lesson.
+                                </div>
+                                <div class="standards-item">
+                                    <span class="item-label">Framework</span>
+                                    Additional standard, benchmark, or curriculum alignment can be listed here.
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="lesson-section sidebar-panel">
+                            <div class="section-heading">
+                                <h2>Materials</h2>
+                            </div>
+                            <div class="materials-list" id="materials-list">
+                                <div class="materials-item">
+                                    <span class="materials-dot" aria-hidden="true"></span>
+                                    <div>Material or resource 1 goes here.</div>
+                                </div>
+                                <div class="materials-item">
+                                    <span class="materials-dot" aria-hidden="true"></span>
+                                    <div>Material or resource 2 goes here.</div>
+                                </div>
+                                <div class="materials-item">
+                                    <span class="materials-dot" aria-hidden="true"></span>
+                                    <div>Material or resource 3 goes here.</div>
+                                </div>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </article>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

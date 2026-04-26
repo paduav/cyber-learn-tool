@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cybersecurity Lesson Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="header-inner">
+                <a class="brand-lockup" href="{{ url_for('index') }}" aria-label="LessonForge home">
+                    <span class="brand-badge">N/A</span>
+                    <div class="brand-copy">
+                        <span class="brand-mark">TitleHere</span>
+                        <span class="brand-subtitle">Cybersecurity AI Lesson Planning Tool</span>
+                    </div>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a class="nav-link active" href="{{ url_for('index') }}">Generator</a>
+                    <a class="nav-link" href="{{ url_for('lesson_plan_page') }}">Preview</a>
+                    <a class="nav-link" href="#about">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="generator-page">
+            <section class="generator-layout">
+                <div class="generator-intro">
+                    <span class="eyebrow">Lesson Builder</span>
+                    <h1>Create engaging middle school cybersecurity lesson plans in minutes.</h1>
+                    <p class="intro-copy">
+                      Customize a cybersecurity lesson by selecting topics, difficulty level, class duration, and learning goals. Using research-backed activities from our database,
+                      the tool generates a complete, classroom-ready lesson plan tailored for middle school learners—no extensive prep required.
+                    </p>
+
+                    <div class="intro-feature-list" aria-label="What the lesson plan includes">
+                        <div class="intro-feature">
+                            <span class="feature-kicker">Includes</span>
+                            Standards-aligned learning objectives, cybersecurity-focused materials, and a structured lesson sequence featuring interactive activities,
+                            timing guidance, and reflection prompts.
+                        </div>
+                        <div class="intro-feature">
+                            <span class="feature-kicker">Designed for</span>
+                            Educators teaching digital literacy and cybersecurity who need quick, high-quality lesson plans that are easy to review, adapt,
+                            and implement in middle school classrooms.
+                        </div>
+                    </div>
+                </div>
+
+                <section class="generator-card" aria-label="Lesson plan input form">
+                    <div class="card-header">
+                        <span class="card-step">Step 1</span>
+                        <h2>Lesson Details</h2>
+                        <p>
+                          In the inputs below, enter the core details you want the generator to use.
+                        </p>
+                        <p>
+                          <i><span class="required">*</span> Fields are required.</i>
+                        </p>
+                    </div>
+
+                    <form
+                        class="generator-form"
+                        id="lesson-generator-form"
+                        data-preview-url="{{ url_for('lesson_plan_page') }}"
+                        novalidate
+                    >
+                        <div class="form-group">
+                            <label class="label" for="topic">
+                                Learning Topic / Skill Area <span class="required">*</span>
+                            </label>
+                            <input id="topic" name="topic" type="text" placeholder="Enter topic..." required />
+                            <p class="field-error" id="topic-error" aria-live="polite"></p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="label" for="difficulty">
+                                    Difficulty Level <span class="required">*</span>
+                                </label>
+                                <select id="difficulty" name="difficultyLevel" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option>Beginner</option>
+                                    <option>Intermediate</option>
+                                    <option>Advanced</option>
+                                </select>
+                                <p class="field-error" id="difficulty-error" aria-live="polite"></p>
+                            </div>
+
+                            <div class="col">
+                                <label class="label" for="duration-value">
+                                    Time Allotment <span class="required">*</span>
+                                </label>
+                                <div class="time-input-group">
+                                    <input
+                                        id="duration-value"
+                                        name="durationValue"
+                                        type="number"
+                                        min="1"
+                                        step="1"
+                                        inputmode="numeric"
+                                        placeholder="45"
+                                        required
+                                    />
+                                    <select id="duration-unit" name="durationUnit" aria-label="Time unit" required>
+                                        <option value="minutes" selected>Minutes</option>
+                                        <option value="hours">Hours</option>
+                                    </select>
+                                </div>
+                                <p class="field-error" id="duration-error" aria-live="polite"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="label" for="standards">Standards Alignment</label>
+                            <input id="standards" name="standardsAlignment" type="text" placeholder="e.g. CSTA 2-NI-05, ISTE 1.3b" />
+                        </div>
+
+                        <div class="optional-row">
+                            <label class="label optional-inline" for="customization">
+                                Additional Customization
+                                <span class="optional-pill">Optional</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="customization" name="additionalCustomization" placeholder="Add constraints, activity ideas, student needs, or classroom context..."></textarea>
+                        </div>
+
+                        <p class="form-status" id="form-status" aria-live="polite"></p>
+
+                        <button class="btn" id="generate-button" type="submit">Generate lesson plan</button>
+                    </form>
+                </section>
+            </section>
+
+            <section class="about-section" id="about">
+                <div class="about-card">
+                    <span class="eyebrow">About</span>
+                    <h2>About Header Here</h2>
+                    <p>
+                        Add a description to the about section here.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
