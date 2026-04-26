@@ -56,6 +56,23 @@
 // For storing data in the browser's sessionStorage, which remembers the user's form submission and generated lesson plan.
 const LESSON_REQUEST_STORAGE_KEY = "lessonGenerator.latestRequest";
 const LESSON_PLAN_STORAGE_KEY = "lessonGenerator.latestLessonPlan";
+const SUGGESTED_TOPICS = [
+    "Online Safety & Digital Citizenship",
+    "Privacy & Personal Data Protection",
+    "Passwords & Authentication",
+    "Phishing & Social Engineering",
+    "Cryptography",
+    "Malware & Cyber Threats",
+    "Operating Systems & Command line",
+    "Network Security",
+    "Artifical Intelligence",
+];
+const SUGGESTED_STANDARDS = [
+    "K-12 Cybersecurity Standards",
+    "ISTE Standards",
+    "CSTA Computer Science Standards",
+    "NICE Framework",
+];
 
 // Run two functions after the page's HTML has finished loading.
 document.addEventListener("DOMContentLoaded", () => {
@@ -74,12 +91,33 @@ function initializeGeneratorForm() {
     // Stores references to all the input elements.
     const fields = {
         topic: form.querySelector("#topic"),
+        topicInput: form.querySelector("#topic-input"),
         difficulty: form.querySelector("#difficulty"),
         durationValue: form.querySelector("#duration-value"),
         durationUnit: form.querySelector("#duration-unit"),
         standards: form.querySelector("#standards"),
+        standardsInput: form.querySelector("#standards-input"),
         customization: form.querySelector("#customization"),
     };
+    const topicPicker = createTagPicker({
+        root: fields.topic,
+        input: fields.topicInput,
+        tagList: form.querySelector("#topic-tags"),
+        suggestionsContainer: form.querySelector("#topic-suggestions"),
+        suggestions: SUGGESTED_TOPICS,
+        onChange: () => {
+            clearFieldError(fields.topic);
+            hideMessage(statusMessage);
+        },
+    });
+    const standardsPicker = createTagPicker({
+        root: fields.standards,
+        input: fields.standardsInput,
+        tagList: form.querySelector("#standards-tags"),
+        suggestionsContainer: form.querySelector("#standards-suggestions"),
+        suggestions: SUGGESTED_STANDARDS,
+        onChange: () => hideMessage(statusMessage),
+    });
 
     const statusMessage = form.querySelector("#form-status");
     const submitButton = form.querySelector("#generate-button");
@@ -90,7 +128,7 @@ function initializeGeneratorForm() {
         event.preventDefault();
 
         // Takes user's inputs and turns into a JavaScript object.
-        const payload = buildLessonRequestPayload(fields);
+        const payload = buildLessonRequestPayload(fields, topicPicker, standardsPicker);
         // Checks for missing or invalid required values.
         const validationErrors = validateLessonRequest(payload);
 
@@ -121,7 +159,7 @@ function initializeGeneratorForm() {
             console.error("Lesson preview preparation failed:", error);
             showMessage(
                 statusMessage,
-                "We could not prepare the lesson plan preview right now. Please try again.",
+                error.message || "We could not prepare the lesson plan preview right now. Please try again.",
                 "error"
             );
         } finally {
@@ -131,7 +169,7 @@ function initializeGeneratorForm() {
     });
 
     // Listens for "input" and "change" so it removes the error state.
-    Object.values(fields).forEach((field) => {
+    [fields.difficulty, fields.durationValue, fields.durationUnit, fields.customization].forEach((field) => {
         if (!field) {
             return;
         }
@@ -184,12 +222,14 @@ function initializeLessonPlanPage() {
 }
 
 // Reads the form values and builds a request object.
-function buildLessonRequestPayload(fields) {
+function buildLessonRequestPayload(fields, topicPicker, standardsPicker) {
     const durationValue = Number.parseInt(fields.durationValue.value, 10);
     const durationUnit = fields.durationUnit.value || "minutes";
+    const topics = topicPicker.getValues();
+    const standards = standardsPicker.getValues();
 
     return {
-        topic: fields.topic.value.trim(),
+        topic: topics,
         difficultyLevel: fields.difficulty.value.trim().toLowerCase(),
         duration: {
             value: Number.isNaN(durationValue) ? null : durationValue,
@@ -197,7 +237,7 @@ function buildLessonRequestPayload(fields) {
             display: Number.isNaN(durationValue) ? "" : formatDuration(durationValue, durationUnit),
             totalMinutes: Number.isNaN(durationValue) ? null : convertDurationToMinutes(durationValue, durationUnit),
         },
-        standardsAlignment: fields.standards.value.trim(),
+        standardsAlignment: standards,
         additionalCustomization: fields.customization.value.trim(),
     };
 }
@@ -206,8 +246,8 @@ function buildLessonRequestPayload(fields) {
 function validateLessonRequest(payload) {
     const errors = {};
 
-    if (!payload.topic) {
-        errors.topic = "Please enter a learning topic or skill area.";
+    if (!Array.isArray(payload.topic) || payload.topic.length === 0) {
+        errors.topic = "Please choose at least one learning topic or skill area.";
     }
 
     if (!payload.difficultyLevel) {
@@ -219,7 +259,7 @@ function validateLessonRequest(payload) {
     }
 
     if (!payload.duration.unit) {
-        errors.durationUnit = "Please choose minutes or hours.";
+        errors.durationUnit = "Please choose minutes, hours, or days.";
     }
 
     return errors;
@@ -227,7 +267,8 @@ function validateLessonRequest(payload) {
 
 // Takes the lesson plan data and makes sure it has all the pieces the page expects.
 function normalizeLessonPlan(lessonPlan, requestPayload = {}) {
-    const requestTopic = requestPayload?.topic || "Cybersecurity Awareness";
+    const requestTopics = normalizeRequestList(requestPayload?.topic);
+    const requestTopic = requestTopics[0] || "Cybersecurity Awareness";
     const requestDifficulty = requestPayload?.difficultyLevel || "beginner";
     const requestDuration = requestPayload?.duration?.display || "45 min";
 
@@ -332,7 +373,11 @@ function normalizeStandards(standards, standardsFallback) {
         });
     }
 
-    if (standardsFallback) {
+    if (Array.isArray(standardsFallback) && standardsFallback.length > 0) {
+        return standardsFallback.map((item) => ({ label: "Requested Alignment", text: item }));
+    }
+
+    if (typeof standardsFallback === "string" && standardsFallback.trim()) {
         return [{ label: "Requested Alignment", text: standardsFallback }];
     }
 
@@ -558,6 +603,120 @@ function renderValidationErrors(errors, fields) {
     }
 }
 
+function createTagPicker({ root, input, tagList, suggestionsContainer, suggestions, onChange }) {
+    const state = {
+        values: [],
+    };
+
+    renderSuggestions();
+    renderSelectedTags();
+
+    input.classList.add("tag-input");
+
+    root.addEventListener("click", () => {
+        input.focus();
+    });
+
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === ",") {
+            event.preventDefault();
+            addValue(input.value);
+        }
+
+        if (event.key === "Backspace" && !input.value.trim() && state.values.length > 0) {
+            removeValue(state.values[state.values.length - 1]);
+        }
+    });
+
+    input.addEventListener("blur", () => {
+        addValue(input.value);
+    });
+
+    function addValue(rawValue) {
+        const normalizedValue = normalizePickerValue(rawValue);
+
+        input.value = "";
+
+        if (!normalizedValue) {
+            return;
+        }
+
+        if (state.values.some((value) => value.toLowerCase() === normalizedValue.toLowerCase())) {
+            return;
+        }
+
+        state.values.push(normalizedValue);
+        renderSelectedTags();
+        renderSuggestions();
+        onChange();
+    }
+
+    function removeValue(valueToRemove) {
+        state.values = state.values.filter((value) => value.toLowerCase() !== valueToRemove.toLowerCase());
+        renderSelectedTags();
+        renderSuggestions();
+        onChange();
+    }
+
+    function renderSelectedTags() {
+        tagList.innerHTML = state.values
+            .map(
+                (value) => `
+                    <span class="selected-tag">
+                        <span>${escapeHtml(value)}</span>
+                        <button type="button" data-tag-remove="${escapeHtml(value)}" aria-label="Remove ${escapeHtml(value)}">x</button>
+                    </span>
+                `
+            )
+            .join("");
+
+        tagList.querySelectorAll("[data-tag-remove]").forEach((button) => {
+            button.addEventListener("click", () => removeValue(button.dataset.tagRemove));
+        });
+    }
+
+    function renderSuggestions() {
+        suggestionsContainer.innerHTML = suggestions
+            .map((value) => {
+                const selected = state.values.some((item) => item.toLowerCase() === value.toLowerCase());
+                return `<button type="button" class="suggestion-chip${selected ? " is-selected" : ""}" data-suggestion="${escapeHtml(value)}">${escapeHtml(toTitleCase(value))}</button>`;
+            })
+            .join("");
+
+        suggestionsContainer.querySelectorAll("[data-suggestion]").forEach((button) => {
+            button.addEventListener("click", () => addValue(button.dataset.suggestion));
+        });
+    }
+
+    return {
+        getValues() {
+            return [...state.values];
+        },
+    };
+}
+
+function normalizePickerValue(value) {
+    return String(value || "").trim().replace(/\s+/g, " ");
+}
+
+function normalizeRequestList(value) {
+    if (Array.isArray(value)) {
+        return value.filter(Boolean);
+    }
+
+    if (typeof value === "string" && value.trim()) {
+        return [value.trim()];
+    }
+
+    return [];
+}
+
+function toTitleCase(value) {
+    return String(value || "")
+        .toLowerCase()
+        .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
 function setFieldError(field, errorSelector, message) {
     const errorElement = document.querySelector(errorSelector);
     field.setAttribute("aria-invalid", "true");
@@ -642,12 +801,24 @@ function setText(selector, value) {
 }
 
 function convertDurationToMinutes(value, unit) {
-    return unit === "hours" ? value * 60 : value;
+    if (unit === "hours") {
+        return value * 60;
+    }
+
+    if (unit === "days") {
+        return value * 24 * 60;
+    }
+
+    return value;
 }
 
 function formatDuration(value, unit) {
     if (unit === "hours") {
         return `${value} hr`;
+    }
+
+    if (unit === "days") {
+        return `${value} day${value === 1 ? "" : "s"}`;
     }
 
     return `${value} min`;
@@ -697,9 +868,11 @@ async function requestLessonPlan(payload) {
         body: JSON.stringify(payload)
     });
 
+    const responseData = await response.json().catch(() => null);
+
     if (!response.ok) {
-        throw new Error("Failed to generate lesson plan");
+        throw new Error(responseData?.error || "Failed to generate lesson plan");
     }
 
-    return await response.json();
+    return responseData;
 }

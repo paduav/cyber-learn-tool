@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +14,14 @@
                 <a class="brand-lockup" href="{{ url_for('index') }}" aria-label="LessonForge home">
                     <span class="brand-badge">N/A</span>
                     <div class="brand-copy">
-                        <span class="brand-mark">TitleHere</span>
-                        <span class="brand-subtitle">Cybersecurity AI Lesson Planning Tool</span>
+                        <span class="brand-mark">Cybersecurity AI Lesson Planning Tool</span>
                     </div>
                 </a>
 
                 <nav class="site-nav" aria-label="Primary navigation">
                     <a class="nav-link active" href="{{ url_for('index') }}">Generator</a>
                     <a class="nav-link" href="{{ url_for('lesson_plan_page') }}">Preview</a>
-                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="#definitions">Definitions</a>
                 </nav>
             </div>
         </header>
@@ -72,7 +72,20 @@
                             <label class="label" for="topic">
                                 Learning Topic / Skill Area <span class="required">*</span>
                             </label>
-                            <input id="topic" name="topic" type="text" placeholder="Enter topic..." required />
+                            <div class="tag-selector" id="topic" aria-label="Learning Topic / Skill Area">
+                                <div class="tag-list" id="topic-tags" aria-live="polite"></div>
+                                <input
+                                    id="topic-input"
+                                    name="topic"
+                                    type="text"
+                                    placeholder="Enter Learning Topic/Skill Area"
+                                    autocomplete="off"
+                                />
+                            </div>
+                            <details class="tag-dropdown">
+                                <summary>Suggested Learning Topics</summary>
+                                <div class="tag-suggestions" id="topic-suggestions" aria-label="Suggested learning topics"></div>
+                            </details>
                             <p class="field-error" id="topic-error" aria-live="polite"></p>
                         </div>
 
@@ -108,6 +121,7 @@
                                     <select id="duration-unit" name="durationUnit" aria-label="Time unit" required>
                                         <option value="minutes" selected>Minutes</option>
                                         <option value="hours">Hours</option>
+                                        <option value="days">Days</option>
                                     </select>
                                 </div>
                                 <p class="field-error" id="duration-error" aria-live="polite"></p>
@@ -115,8 +129,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="label" for="standards">Standards Alignment</label>
-                            <input id="standards" name="standardsAlignment" type="text" placeholder="e.g. CSTA 2-NI-05, ISTE 1.3b" />
+                            <label class="label" for="standards">
+                                Standards Alignment
+                            </label>
+                            <div class="tag-selector" id="standards" aria-label="Standards Alignment">
+                                <div class="tag-list" id="standards-tags" aria-live="polite"></div>
+                                <input
+                                    id="standards-input"
+                                    name="standardsAlignment"
+                                    type="text"
+                                    placeholder="Enter Standard"
+                                    autocomplete="off"
+                                />
+                            </div>
+                            <details class="tag-dropdown">
+                                <summary>Suggested Standards</summary>
+                                <div class="tag-suggestions" id="standards-suggestions" aria-label="Suggested standards"></div>
+                            </details>
                         </div>
 
                         <div class="optional-row">
@@ -137,13 +166,73 @@
                 </section>
             </section>
 
-            <section class="about-section" id="about">
+            <section class="about-section" id="definitions">
                 <div class="about-card">
-                    <span class="eyebrow">About</span>
-                    <h2>About Header Here</h2>
-                    <p>
-                        Add a description to the about section here.
+                    <span class="eyebrow">Definitions</span>
+                    <h2>Definitions</h2>
+                    <p class="definitions-intro">
+                        Use these definitions to align lesson requests with the intended activity difficulty and cybersecurity topic focus.<br>
                     </p>
+
+                    <div class="definitions-block">
+                        <h3>Activity Level</h3>
+                        <div class="definition-grid">
+                            <article class="definition-card">
+                                <span class="lesson-tag difficulty beginner">Beginner</span>
+                                <p>Introduces foundational cybersecurity awareness concepts with no prior knowledge required. Focused on recognizing common online risks and learning basic safety practices. Students will typically interact with guided games, simple simulations, or hands-on demonstrations.</p>
+                            </article>
+                            <article class="definition-card">
+                                <span class="lesson-tag difficulty intermediate">Intermediate</span>
+                                <p>Builds on foundational knowledge and requires students to apply cybersecurity concepts in structured scenarios. Activities may involve solving guided challenges, analyzing information, or using basic cybersecurity tools.</p>
+                            </article>
+                            <article class="definition-card">
+                                <span class="lesson-tag difficulty advanced">Advanced</span>
+                                <p>Requires technical engagement and independent problem-solving using cybersecurity concepts and tools. Activities often simulate real cybersecurity tasks such as solving Capture-The-Flag (CTF) challenges, using command-line tools, or breaking puzzles.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="definitions-block">
+                        <h3>Learning Topic / Skill Area Definitions</h3>
+                        <div class="topic-definitions">
+                            <article class="topic-definition">
+                                <h4>Online Safety &amp; Digital Citizenship</h4>
+                                <p>Responsible and respectful behavior when using the internet and digital technologies. This topic includes recognizing unsafe situations, understanding appropriate communication, and making safe decisions when interacting with websites, apps, and other users.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Privacy &amp; Personal Data Protection</h4>
+                                <p>Understanding how personal information is collected, stored, shared, and protected online. Topics include personally identified information (PII), digital footprints, data tracking, privacy settings, how companies collect and use user data, and strategies for protecting PII.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Passwords &amp; Authentication</h4>
+                                <p>Methods used to secure accounts and verify a user’s identity. Covers creating and managing strong passwords, password complexity, risks of password reuse, password managers, and common password attacks such as brute-force or dictionary attacks. Also includes authentication methods such as multi-factor authentication (MFA), biometrics, and security tokens.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Phishing &amp; Social Engineering</h4>
+                                <p>Techniques used by attackers to manipulate people into revealing sensitive information or performing unsafe actions. This topic includes identifying phishing emails, fake websites, scams, and other deceptive messages, as well as understanding common social engineering tactics such as impersonation, urgency and pretexting.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Cryptography</h4>
+                                <p>Techniques used to protect information by converting it into secure formats that unauthorized users cannot easily read. Topics include encryption and decryption, ciphers, cryptographic keys, hashing, and how cryptography helps ensure confidentiality and integrity.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Malware &amp; Cyber Threats</h4>
+                                <p>Types of malicious software and cyber attacks designed to harm systems, steal information, or disrupt operations and services. Includes malware such as viruses, worms, spyware, and ransomware, and other cyber threats such as denial-of-service attacks and malicious downloads.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Operating Systems &amp; Command Line</h4>
+                                <p>Basic interaction with computer operating systems and system-level tools used to manage files, programs, and system resources. Topics include navigating file systems, executing commands in a terminal/command prompt, managing files and permissions, etc.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Network Security</h4>
+                                <p>Protecting data and systems as they travel across or connect within networks. Understanding how information moves between devices, common network-based threats such as packet interception, man-in-the-middle, denial-of-service attacks.</p>
+                            </article>
+                            <article class="topic-definition">
+                                <h4>Artificial Intelligence</h4>
+                                <p>Understanding how artificial intelligence systems work and the security risks associated with them. Protecting artificial intelligence systems from manipulation, misuse, and adversarial attacks. Understanding how AI models are trained, deployed, and interacted with, as well as common AI-specific threats such as prompt injection and data poisoning.</p>
+                            </article>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
