@@ -1,13 +1,10 @@
-# models.py
-
-
 import sqlite3
+from pathlib import Path
 
-DB_PATH = "database/activities.db"
+DB_PATH = Path(__file__).resolve().parent.parent / "database" / "activities.db"
 
 def get_connection():
     return sqlite3.connect(DB_PATH)
-
 
 def get_ranked_activities(topic, difficulty, time, standards):
     conn = get_connection()
@@ -43,7 +40,10 @@ def get_ranked_activities(topic, difficulty, time, standards):
         score = 0
 
         # topic match
-        if topic == activity["topic"]:
+        topic_values = normalize_filters(topic)
+        standard_values = normalize_filters(standards)
+
+        if any(value.lower() == (activity["topic"] or "").lower() for value in topic_values):
             score += 3
 
         # difficulty match
@@ -59,13 +59,13 @@ def get_ranked_activities(topic, difficulty, time, standards):
                 score += 2
 
         # standards match
-        if standards and activity["standards"]:
-            if standards.lower() in activity["standards"].lower():
+        if standard_values and activity["standards"]:
+            if any(value.lower() in activity["standards"].lower() for value in standard_values):
                 score += 3
 
         # tag match
         tags = (activity["tags"] or "").lower()
-        if topic.lower() in tags:
+        if any(value.lower() in tags for value in topic_values):
             score += 1
 
         activity["score"] = score
@@ -75,3 +75,12 @@ def get_ranked_activities(topic, difficulty, time, standards):
 
     # return all activities ranked. To return top (3) activities, append [:3]
     return activities[:46]
+
+def normalize_filters(value):
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item).strip()]
+
+    if isinstance(value, str) and value.strip():
+        return [value.strip()]
+
+    return []

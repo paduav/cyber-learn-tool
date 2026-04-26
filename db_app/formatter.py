@@ -1,6 +1,5 @@
 # formatter.py
 
-
 from db_app.models import get_ranked_activities
 
 def prepare_activities_for_ai(topic, difficulty, time, standards):
@@ -10,7 +9,6 @@ def prepare_activities_for_ai(topic, difficulty, time, standards):
         return None
 
     return format_for_ai(activities)
-
 
 def format_for_ai(activities):
     formatted = "Here are some cybersecurity lessons ranked by relevance:\n\n"
