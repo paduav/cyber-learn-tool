@@ -412,6 +412,7 @@ function normalizeActivities(activities, topic) {
             time: activity.time || "",
             text: activity.text || activity.description || "",
             bullets: normalizeStringList(activity.bullets || activity.steps, []),
+            link: activity.link || "#"
         }));
     }
 
@@ -424,6 +425,7 @@ function normalizeActivities(activities, topic) {
                 "Work in pairs to identify patterns, red flags, or best-practice responses.",
                 "Share findings with the class and compare reasoning.",
             ],
+            link: activity.link || "#"
         },
         {
             title: "Collaborative Practice",
@@ -433,6 +435,7 @@ function normalizeActivities(activities, topic) {
                 "Discuss possible decisions before choosing a final response.",
                 "Explain why one action is safer or more effective than another.",
             ],
+            link: activity.link || "#"
         },
     ];
 }
@@ -559,9 +562,26 @@ function renderActivities(selector, activities) {
                         <h3 class="activity-title">${escapeHtml(activity.title)}</h3>
                         <span class="activity-time">${escapeHtml(activity.time || "")}</span>
                     </div>
+
                     <p>${escapeHtml(activity.text)}</p>
+
+                    ${activity.link && activity.link !== "#"
+                    ? `
+                            <p class="activity-link">
+                                <a href="${escapeHtml(activity.link)}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                   View Original Activity Resource
+                                </a>
+                            </p>
+                            `
+                    : ""
+                }
+
                     <ul>
-                        ${activity.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}
+                        ${activity.bullets.map(
+                    (bullet) => `<li>${escapeHtml(bullet)}</li>`
+                ).join("")}
                     </ul>
                 </article>
             `
