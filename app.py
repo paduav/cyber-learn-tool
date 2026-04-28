@@ -99,7 +99,8 @@ TASK:
       "title": "...",
       "time": "...",
       "text": "...",
-      "bullets": [...]
+      "bullets": [...],
+      "link": "..."
     }}
   ],
   "discussionReflection": {{
@@ -116,6 +117,9 @@ TASK:
 IMPORTANT:
 - ONLY return valid JSON
 - Do NOT include markdown or explanations
+- Each activity must include its original link from the database
+- Use the EXACT link provided in the source activities
+- Do NOT create or modify links
 """
 
             response = client.models.generate_content(

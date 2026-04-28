@@ -21,6 +21,18 @@
     --topic-text: #434954;
     --duration-bg: #eadffc;
     --duration-text: #5d4f7a;
+    --tag-slate-bg: #d9dde1;
+    --tag-slate-text: #434954;
+    --tag-yellow-bg: #fff3bf;
+    --tag-yellow-text: #8a6700;
+    --tag-red-bg: #ffd9d9;
+    --tag-red-text: #9c2c2c;
+    --tag-blue-bg: #d6e8fb;
+    --tag-blue-text: #2f5c86;
+    --tag-green-bg: #d8f3dc;
+    --tag-green-text: #1f6b3d;
+    --tag-purple-bg: #eadffc;
+    --tag-purple-text: #5d4f7a;
     --optional-bg: #cfe6d3;
     --optional-text: #2f5b37;
     --required: #e28b4e;
@@ -304,6 +316,36 @@ a {
 .lesson-tag.duration {
     background: var(--duration-bg);
     color: var(--duration-text);
+}
+
+.lesson-tag.palette-slate {
+    background: var(--tag-slate-bg);
+    color: var(--tag-slate-text);
+}
+
+.lesson-tag.palette-yellow {
+    background: var(--tag-yellow-bg);
+    color: var(--tag-yellow-text);
+}
+
+.lesson-tag.palette-red {
+    background: var(--tag-red-bg);
+    color: var(--tag-red-text);
+}
+
+.lesson-tag.palette-blue {
+    background: var(--tag-blue-bg);
+    color: var(--tag-blue-text);
+}
+
+.lesson-tag.palette-green {
+    background: var(--tag-green-bg);
+    color: var(--tag-green-text);
+}
+
+.lesson-tag.palette-purple {
+    background: var(--tag-purple-bg);
+    color: var(--tag-purple-text);
 }
 
 .generator-card {

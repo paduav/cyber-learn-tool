@@ -1,14 +1,19 @@
 import os
 from dotenv import load_dotenv
-from google import genai
 
 load_dotenv()
+
+try:
+    from google import genai
+except ImportError:
+    print("ERROR: Gemini SDK is not installed. Run `python3 -m pip install -r requirements.txt`.")
+    raise SystemExit(1)
 
 api_key = os.getenv("GEMINI_API_KEY")
 
 if not api_key:
-    print("ERROR: API key not found")
-    exit()
+    print("ERROR: GEMINI_API_KEY is not set.")
+    raise SystemExit(1)
 
 client = genai.Client(api_key=api_key)
 

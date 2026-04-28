@@ -412,6 +412,7 @@ function normalizeActivities(activities, topic) {
             time: activity.time || "",
             text: activity.text || activity.description || "",
             bullets: normalizeStringList(activity.bullets || activity.steps, []),
+            link: activity.link || "#"
         }));
     }
 
@@ -424,6 +425,7 @@ function normalizeActivities(activities, topic) {
                 "Work in pairs to identify patterns, red flags, or best-practice responses.",
                 "Share findings with the class and compare reasoning.",
             ],
+            link: activity.link || "#"
         },
         {
             title: "Collaborative Practice",
@@ -433,6 +435,7 @@ function normalizeActivities(activities, topic) {
                 "Discuss possible decisions before choosing a final response.",
                 "Explain why one action is safer or more effective than another.",
             ],
+            link: activity.link || "#"
         },
     ];
 }
@@ -496,17 +499,42 @@ function renderTagList(selector, tags) {
         return;
     }
 
+    let paletteIndex = 0;
+
     container.innerHTML = tags
         .map((tag) => {
             const tagClasses = ["lesson-tag", escapeHtml(tag.type)];
 
             if (tag.type === "difficulty") {
-                tagClasses.push(escapeHtml(getDifficultyModifier(tag.label)));
+                const difficultyModifier = getDifficultyModifier(tag.label);
+
+                if (difficultyModifier) {
+                    tagClasses.push(escapeHtml(difficultyModifier));
+                } else {
+                    tagClasses.push(getTagPaletteClass(paletteIndex));
+                    paletteIndex += 1;
+                }
+            } else {
+                tagClasses.push(getTagPaletteClass(paletteIndex));
+                paletteIndex += 1;
             }
 
             return `<span class="${tagClasses.join(" ")}">${escapeHtml(tag.label)}</span>`;
         })
         .join("");
+}
+
+function getTagPaletteClass(index) {
+    const palette = [
+        "palette-slate",
+        "palette-yellow",
+        "palette-red",
+        "palette-blue",
+        "palette-green",
+        "palette-purple",
+    ];
+
+    return palette[index % palette.length];
 }
 
 function renderSimpleList(selector, items) {
@@ -534,9 +562,26 @@ function renderActivities(selector, activities) {
                         <h3 class="activity-title">${escapeHtml(activity.title)}</h3>
                         <span class="activity-time">${escapeHtml(activity.time || "")}</span>
                     </div>
+
                     <p>${escapeHtml(activity.text)}</p>
+
+                    ${activity.link && activity.link !== "#"
+                    ? `
+                            <p class="activity-link">
+                                <a href="${escapeHtml(activity.link)}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                   View Original Activity Resource
+                                </a>
+                            </p>
+                            `
+                    : ""
+                }
+
                     <ul>
-                        ${activity.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}
+                        ${activity.bullets.map(
+                    (bullet) => `<li>${escapeHtml(bullet)}</li>`
+                ).join("")}
                     </ul>
                 </article>
             `
@@ -806,7 +851,7 @@ function convertDurationToMinutes(value, unit) {
     }
 
     if (unit === "days") {
-        return value * 24 * 60;
+        return value * 8 * 60;
     }
 
     return value;
