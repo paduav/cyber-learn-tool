@@ -496,17 +496,42 @@ function renderTagList(selector, tags) {
         return;
     }
 
+    let paletteIndex = 0;
+
     container.innerHTML = tags
         .map((tag) => {
             const tagClasses = ["lesson-tag", escapeHtml(tag.type)];
 
             if (tag.type === "difficulty") {
-                tagClasses.push(escapeHtml(getDifficultyModifier(tag.label)));
+                const difficultyModifier = getDifficultyModifier(tag.label);
+
+                if (difficultyModifier) {
+                    tagClasses.push(escapeHtml(difficultyModifier));
+                } else {
+                    tagClasses.push(getTagPaletteClass(paletteIndex));
+                    paletteIndex += 1;
+                }
+            } else {
+                tagClasses.push(getTagPaletteClass(paletteIndex));
+                paletteIndex += 1;
             }
 
             return `<span class="${tagClasses.join(" ")}">${escapeHtml(tag.label)}</span>`;
         })
         .join("");
+}
+
+function getTagPaletteClass(index) {
+    const palette = [
+        "palette-slate",
+        "palette-yellow",
+        "palette-red",
+        "palette-blue",
+        "palette-green",
+        "palette-purple",
+    ];
+
+    return palette[index % palette.length];
 }
 
 function renderSimpleList(selector, items) {
@@ -806,7 +831,7 @@ function convertDurationToMinutes(value, unit) {
     }
 
     if (unit === "days") {
-        return value * 24 * 60;
+        return value * 8 * 60;
     }
 
     return value;
