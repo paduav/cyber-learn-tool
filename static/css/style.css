@@ -73,6 +73,15 @@ a {
     box-shadow: 0 8px 18px rgba(34, 46, 37, 0.12);
 }
 
+.brand-badge-img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    display: block;
+    transform: scale(2.4);
+    transform-origin: center;
+}
+
 .header-inner {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
