@@ -29,7 +29,7 @@ The system also uses AI to customize and tailor activities based on classroom co
 ## Tech Stack
 
 * Backend: Python
-* Database: SQLite3
+* Database: SQLite
 * Frontend: Flask
 * AI Integration: Gemini API
 
