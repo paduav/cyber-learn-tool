@@ -17,7 +17,7 @@ The system also uses AI to customize and tailor activities based on classroom co
 
 ## Workflow design
 
-1. Frontend/Activity Input (Flask) - Teacher inputs parameters for activity
+1. Frontend/Activity Input - Teacher inputs parameters for activity
 2. Backend Processing (Python, app.py) - The python backend would process the request and prepare to send it to the database and AI
 3. Database Ranking (SQLite3, models.py) - A database function ranks activities based on the initial input
 4. Format for AI (formatter.py) - Ranked activities are then formatted into an input that the AI can easily understand and work with
@@ -28,9 +28,9 @@ The system also uses AI to customize and tailor activities based on classroom co
 
 ## Tech Stack
 
-* Backend: Python
+* Backend: Python, Flask
 * Database: SQLite
-* Frontend: Flask
+* Frontend: HTML, CSS, Javascript
 * AI Integration: Gemini API
 
 
